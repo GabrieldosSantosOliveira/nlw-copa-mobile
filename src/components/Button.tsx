@@ -1,18 +1,11 @@
-import {
-  Button as ButtonNativeBase,
-  Text,
-  IButtonProps
-} from 'native-base';
-import React from 'react';
+import { Button as ButtonNativeBase, IButtonProps, Text } from 'native-base';
+
 interface Props extends IButtonProps {
   title: string;
   type?: 'PRIMARY' | 'SECONDARY';
 }
-export const Button: React.FC<Props> = ({
-  title,
-  type = 'PRIMARY',
-  ...rest
-}) => {
+
+export function Button({ title, type = 'PRIMARY', ...rest }: Props) {
   return (
     <ButtonNativeBase
       w="full"
@@ -20,22 +13,22 @@ export const Button: React.FC<Props> = ({
       rounded="sm"
       fontSize="md"
       textTransform="uppercase"
-      bg={type === 'SECONDARY' ? 'red.500' : 'yellow.500'}
+      bg={type === 'SECONDARY' ? 'red.500' : "yellow.500"}
       _pressed={{
-        bg: type === 'SECONDARY' ? 'red.600' : 'yellow.600'
+        bg: type === 'SECONDARY' ? "red.400" : "yellow.600"
       }}
       _loading={{
-        _spinner: { color: 'black' }
+        _spinner: { color: "black" }
       }}
       {...rest}
     >
       <Text
         fontSize="sm"
         fontFamily="heading"
-        color={type === 'SECONDARY' ? 'white' : 'black'}
+        color={type === 'SECONDARY' ? 'white' : "black"}
       >
         {title}
       </Text>
-    </ButtonNativeBase>
+    </ButtonNativeBase >
   );
-};
+}

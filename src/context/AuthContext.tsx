@@ -6,6 +6,8 @@ import React, {
   useState,
   useEffect
 } from 'react';
+
+import { api } from '../services/api';
 interface UserProps {
   name: string;
   avatarUrl: string;
@@ -38,7 +40,18 @@ export const AuthContextProvider = ({
       scopes: ['profile', 'email']
     });
   const singInWithGoogle = async (access_token: string) => {
-    console.log('\n\n\n\n\n\n' + access_token);
+    try {
+      setIsUserLoading(true);
+      const response = await api.post('/users', {
+        access_token
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    } finally {
+      setIsUserLoading(false);
+    }
   };
   const singIn = async () => {
     try {

@@ -5,7 +5,7 @@ import { VStack, Icon } from 'native-base';
 import { Button } from '../components/Button';
 import { Header } from '../components/Header';
 export const Pools = () => {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
   return (
     <VStack flex={1} bgColor="gray.900">
       <Header title="Meus bolões" />
@@ -27,7 +27,7 @@ export const Pools = () => {
               size="md"
             />
           }
-          onPress={() => navigation.navigate('find')}
+          onPress={() => navigate('find')}
         />
       </VStack>
     </VStack>

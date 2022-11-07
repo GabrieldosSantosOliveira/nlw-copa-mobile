@@ -45,6 +45,7 @@ export const AuthContextProvider = ({
       const response = await api.post('/users', {
         access_token
       });
+
       console.log(response.data);
     } catch (error) {
       console.log(error);

@@ -32,8 +32,7 @@ export const AuthContextProvider = ({
   );
   const [request, response, promptAsync] =
     Google.useAuthRequest({
-      clientId:
-        '288331783256-vj9ga45t4otb3b7fdirhab406ccojo6f.apps.googleusercontent.com',
+      clientId: process.env.CLIENT_ID,
       redirectUri: AuthSession.makeRedirectUri({
         useProxy: true
       }),
@@ -42,11 +41,14 @@ export const AuthContextProvider = ({
   const singInWithGoogle = async (access_token: string) => {
     try {
       setIsUserLoading(true);
-      const response = await api.post('/users', {
+      const tokenResponse = await api.post('/users', {
         access_token
       });
-
-      console.log(response.data);
+      api.defaults.headers.common[
+        'Authorization'
+      ] = `Bearer ${tokenResponse.data.token}`;
+      const userInfoResponse = await api.get('/me');
+      setUser(userInfoResponse.data.user);
     } catch (error) {
       console.log(error);
       throw error;

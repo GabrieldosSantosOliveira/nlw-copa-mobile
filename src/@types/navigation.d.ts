@@ -1,7 +1,6 @@
 export declare global {
   namespace ReactNavigation {
-    interface RootParamList
-      extends Record<string, object | undefined> {
+    interface RootParamList {
       new: undefined;
       pools: undefined;
       find: undefined;

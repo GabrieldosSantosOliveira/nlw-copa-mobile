@@ -1,6 +1,6 @@
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { Text, HStack, Box } from 'native-base';
-import { CaretLeft, Export } from 'phosphor-react-native';
+import { Text, HStack, Box, useTheme } from 'native-base';
 
 import { ButtonIcon } from './ButtonIcon';
 
@@ -17,6 +17,7 @@ export function Header({
   showShareButton = false,
   onShare,
 }: Props) {
+  const { colors, sizes } = useTheme();
   const { navigate } = useNavigation();
   const EmptyBoxSpace = () => <Box w={6} h={6} />;
 
@@ -31,7 +32,16 @@ export function Header({
     >
       <HStack w="full" alignItems="center" justifyContent="space-between">
         {showBackButton ? (
-          <ButtonIcon icon={CaretLeft} onPress={() => navigate('pools')} />
+          <ButtonIcon
+            icon={
+              <AntDesign
+                name="caretleft"
+                color={colors.gray[300]}
+                size={sizes[6]}
+              />
+            }
+            onPress={() => navigate('pools')}
+          />
         ) : (
           <EmptyBoxSpace />
         )}
@@ -46,7 +56,16 @@ export function Header({
         </Text>
 
         {showShareButton ? (
-          <ButtonIcon icon={Export} onPress={onShare} />
+          <ButtonIcon
+            icon={
+              <MaterialCommunityIcons
+                name="export-variant"
+                color={colors.gray[300]}
+                size={sizes[6]}
+              />
+            }
+            onPress={onShare}
+          />
         ) : (
           <EmptyBoxSpace />
         )}

@@ -1,6 +1,6 @@
+import { MaterialIcons, AntDesign } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'native-base';
-import { PlusCircle, SoccerBall } from 'phosphor-react-native';
 import { Platform } from 'react-native';
 
 import { Details } from '../screens/Details';
@@ -34,7 +34,9 @@ export const AppRoutes = () => {
         name="new"
         component={New}
         options={{
-          tabBarIcon: ({ color }) => <PlusCircle color={color} size={size} />,
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="pluscircleo" color={color} size={size} />
+          ),
           tabBarLabel: 'Novo bolão',
         }}
       />
@@ -42,7 +44,9 @@ export const AppRoutes = () => {
         name="pools"
         component={Pools}
         options={{
-          tabBarIcon: ({ color }) => <SoccerBall color={color} size={size} />,
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="sports-soccer" color={color} size={size} />
+          ),
           tabBarLabel: 'Meus bolões',
         }}
       />

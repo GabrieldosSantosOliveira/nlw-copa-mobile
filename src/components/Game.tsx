@@ -1,8 +1,8 @@
+import { AntDesign, Feather } from '@expo/vector-icons';
 import { getName } from 'country-list';
 import dayjs from 'dayjs';
 import ptBR from 'dayjs/locale/pt-br';
 import { Button, HStack, Text, useTheme, VStack } from 'native-base';
-import { X, Check } from 'phosphor-react-native';
 
 import { Team } from './Team';
 
@@ -72,7 +72,7 @@ export function Game({
           onChangeText={setFirstTeamPoints}
         />
 
-        <X color={colors.gray[300]} size={sizes[6]} />
+        <Feather name="x" color={colors.gray[300]} size={sizes[6]} />
 
         <Team
           code={data.secondTeamCountryCode}
@@ -94,7 +94,7 @@ export function Game({
               CONFIRMAR PALPITE
             </Text>
 
-            <Check color={colors.white} size={sizes[4]} />
+            <AntDesign name="check" color={colors.white} size={sizes[4]} />
           </HStack>
         </Button>
       )}

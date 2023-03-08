@@ -26,7 +26,7 @@ export function Guesses({ poolId, code }: Props) {
     } catch (error) {
       console.log(error);
       toast.show({
-        title: 'Não foi possivel carregar os jogos',
+        title: 'Não foi possível carregar os jogos',
         placement: 'top',
         bgColor: 'red.500',
       });
@@ -56,14 +56,19 @@ export function Guesses({ poolId, code }: Props) {
       fetchGames();
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        return toast.show({
-          title: error.response?.data.message,
-          placement: 'top',
-          bgColor: 'red.500',
-        });
+        if (
+          error.response.data.message ===
+          'You cannot send guesses after the game date.'
+        ) {
+          return toast.show({
+            title: 'Você não pode enviar palpites após a data do jogo.',
+            placement: 'top',
+            bgColor: 'red.500',
+          });
+        }
       }
       toast.show({
-        title: 'Não foi possivel enviar o palpite ',
+        title: 'Não foi possível enviar o palpite ',
         placement: 'top',
         bgColor: 'red.500',
       });

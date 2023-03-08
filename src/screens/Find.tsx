@@ -31,8 +31,6 @@ export const Find = () => {
       navigate('pools');
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
-
       if (error.response?.data?.message === 'Pool not found') {
         return toast.show({
           title: 'Bolão não encontrado',
@@ -48,10 +46,12 @@ export const Find = () => {
         });
       }
       toast.show({
-        title: 'Não foi possivel encontrar o bolão',
+        title: 'Não foi possível encontrar o bolão',
         placement: 'top',
         bgColor: 'red.500',
       });
+    } finally {
+      setIsLoading(false);
     }
   };
   return (

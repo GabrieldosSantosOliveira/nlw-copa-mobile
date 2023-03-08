@@ -1,12 +1,13 @@
 {
   "expo": {
-    "name": "nlwcopamobile",
+    "name": "Nlw Copa Mobile",
     "slug": "nlwcopamobile",
     "scheme": "nlwcopamobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
+    "jsEngine": "hermes",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
@@ -15,7 +16,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -23,7 +26,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.gabriel85.nlwcopamobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"

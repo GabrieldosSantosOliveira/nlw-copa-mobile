@@ -29,7 +29,7 @@ export const New = () => {
       setTitle('');
     } catch (error) {
       toast.show({
-        title: 'Não foi possivel criar o bolão',
+        title: 'Não foi possível criar o bolão',
         placement: 'top',
         bgColor: 'red.500',
       });
@@ -49,7 +49,7 @@ export const New = () => {
           my={8}
           textAlign="center"
         >
-          Crie um novo bolão da copa {'\n'} e compartihe entre amigos
+          Crie um novo bolão da copa {'\n'} e compartilhe entre amigos
         </Heading>
         <Input
           mb={2}

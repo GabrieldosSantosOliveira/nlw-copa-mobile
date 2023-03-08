@@ -25,6 +25,7 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
     clientId: process.env.CLIENT_ID,
     redirectUri: AuthSession.makeRedirectUri({
       useProxy: true,
+      scheme: 'nlwcopamobile',
     }),
     scopes: ['profile', 'email'],
   });

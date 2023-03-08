@@ -13,14 +13,11 @@ interface Props {
   count: number;
 }
 
-export function Participants({
-  participants,
-  count
-}: Props) {
+export function Participants({ participants, count }: Props) {
   return (
     <HStack>
       {participants &&
-        participants.map(participant => (
+        participants.map((participant) => (
           <Avatar
             key={participant.id}
             source={{ uri: participant.user.avatarUrl }}
@@ -43,11 +40,7 @@ export function Participants({
         borderWidth={1}
         borderColor="gray.800"
       >
-        <Text
-          color="gray.100"
-          fontSize="xs"
-          fontFamily="medium"
-        >
+        <Text color="gray.100" fontSize="xs" fontFamily="medium">
           {count ? `+${count}` : 0}
         </Text>
       </Center>

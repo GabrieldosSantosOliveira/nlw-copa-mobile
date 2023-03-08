@@ -15,7 +15,7 @@ export function Header({
   title,
   showBackButton = false,
   showShareButton = false,
-  onShare
+  onShare,
 }: Props) {
   const { navigate } = useNavigation();
   const EmptyBoxSpace = () => <Box w={6} h={6} />;
@@ -29,16 +29,9 @@ export function Header({
       pb={5}
       px={5}
     >
-      <HStack
-        w="full"
-        alignItems="center"
-        justifyContent="space-between"
-      >
+      <HStack w="full" alignItems="center" justifyContent="space-between">
         {showBackButton ? (
-          <ButtonIcon
-            icon={CaretLeft}
-            onPress={() => navigate('pools')}
-          />
+          <ButtonIcon icon={CaretLeft} onPress={() => navigate('pools')} />
         ) : (
           <EmptyBoxSpace />
         )}

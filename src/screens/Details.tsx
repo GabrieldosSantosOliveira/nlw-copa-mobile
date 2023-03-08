@@ -15,12 +15,13 @@ interface RouteParams {
   id: string;
 }
 export const Details = () => {
-  const [optionSelected, setOptionSelected] = useState<
-    'guesses' | 'ranking'
-  >('guesses');
+  const [optionSelected, setOptionSelected] = useState<'guesses' | 'ranking'>(
+    'guesses',
+  );
   const [isLoading, setIsLoading] = useState(true);
-  const [poolDetails, setPoolDetails] =
-    useState<PoolCardProps>({} as PoolCardProps);
+  const [poolDetails, setPoolDetails] = useState<PoolCardProps>(
+    {} as PoolCardProps,
+  );
   const toast = useToast();
   const route = useRoute();
   const { id } = route.params as RouteParams;
@@ -31,10 +32,9 @@ export const Details = () => {
       setPoolDetails(data.pool);
     } catch (error) {
       toast.show({
-        title:
-          'Não foi possivel carregar os detalhes do bolão',
+        title: 'Não foi possivel carregar os detalhes do bolão',
         placement: 'top',
-        bgColor: 'green.300'
+        bgColor: 'green.300',
       });
     } finally {
       setIsLoading(false);
@@ -42,7 +42,7 @@ export const Details = () => {
   }
   function handleCodeShare() {
     Share.share({
-      message: poolDetails.code
+      message: poolDetails.code,
     });
   }
   useEffect(() => {
@@ -62,12 +62,7 @@ export const Details = () => {
       {poolDetails._count?.participants > 0 ? (
         <VStack flex={1} px={5}>
           <PoolHeader data={poolDetails} />
-          <HStack
-            p={1}
-            bgColor="gray.800"
-            rounded="sm"
-            mb={5}
-          >
+          <HStack p={1} bgColor="gray.800" rounded="sm" mb={5}>
             <Option
               title="Seus palpites"
               isSelected={optionSelected === 'guesses'}
@@ -79,10 +74,7 @@ export const Details = () => {
               onPress={() => setOptionSelected('ranking')}
             />
           </HStack>
-          <Guesses
-            poolId={poolDetails.id}
-            code={poolDetails.code}
-          />
+          <Guesses poolId={poolDetails.id} code={poolDetails.code} />
         </VStack>
       ) : (
         <EmptyMyPoolList code={poolDetails.code} />

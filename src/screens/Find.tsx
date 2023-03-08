@@ -19,43 +19,38 @@ export const Find = () => {
         return toast.show({
           title: 'Informe o código',
           placement: 'top',
-          bgColor: 'red.500'
+          bgColor: 'red.500',
         });
       }
       await api.post('/pools/join', { code });
       toast.show({
         title: 'Você entrou no bolão com sucesso',
         placement: 'top',
-        bgColor: 'green.300'
+        bgColor: 'green.300',
       });
       navigate('pools');
     } catch (error) {
       console.log(error);
       setIsLoading(false);
 
-      if (
-        error.response?.data?.message === 'Pool not found'
-      ) {
+      if (error.response?.data?.message === 'Pool not found') {
         return toast.show({
           title: 'Bolão não encontrado',
           placement: 'top',
-          bgColor: 'red.500'
+          bgColor: 'red.500',
         });
       }
-      if (
-        error.response?.data?.message ===
-        'Already joined this pool'
-      ) {
+      if (error.response?.data?.message === 'Already joined this pool') {
         return toast.show({
           title: 'Você já está neste bolão',
           placement: 'top',
-          bgColor: 'red.500'
+          bgColor: 'red.500',
         });
       }
       toast.show({
         title: 'Não foi possivel encontrar o bolão',
         placement: 'top',
-        bgColor: 'red.500'
+        bgColor: 'red.500',
       });
     }
   };
@@ -71,8 +66,7 @@ export const Find = () => {
           mb={8}
           textAlign="center"
         >
-          Encontre um bolão através de {'\n'} seu código
-          único
+          Encontre um bolão através de {'\n'} seu código único
         </Heading>
         <Input
           mb={2}

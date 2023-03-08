@@ -9,19 +9,11 @@ interface Props {
   onChangeText: (value: string) => void;
 }
 
-export function Team({
-  code,
-  position,
-  onChangeText
-}: Props) {
+export function Team({ code, position, onChangeText }: Props) {
   return (
     <HStack alignItems="center">
       {position === 'left' && (
-        <CountryFlag
-          isoCode={code}
-          size={25}
-          style={{ marginRight: 12 }}
-        />
+        <CountryFlag isoCode={code} size={25} style={{ marginRight: 12 }} />
       )}
 
       <Input
@@ -34,11 +26,7 @@ export function Team({
       />
 
       {position === 'right' && (
-        <CountryFlag
-          isoCode={code}
-          size={25}
-          style={{ marginLeft: 12 }}
-        />
+        <CountryFlag isoCode={code} size={25} style={{ marginLeft: 12 }} />
       )}
     </HStack>
   );

@@ -1,13 +1,7 @@
 import { getName } from 'country-list';
 import dayjs from 'dayjs';
 import ptBR from 'dayjs/locale/pt-br';
-import {
-  Button,
-  HStack,
-  Text,
-  useTheme,
-  VStack
-} from 'native-base';
+import { Button, HStack, Text, useTheme, VStack } from 'native-base';
 import { X, Check } from 'phosphor-react-native';
 
 import { Team } from './Team';
@@ -40,7 +34,7 @@ export function Game({
   data,
   setFirstTeamPoints,
   setSecondTeamPoints,
-  onGuessConfirm
+  onGuessConfirm,
 }: Props) {
   const { colors, sizes } = useTheme();
   const when = dayjs(data.date)
@@ -57,11 +51,7 @@ export function Game({
       mb={3}
       p={4}
     >
-      <Text
-        color="gray.100"
-        fontFamily="heading"
-        fontSize="sm"
-      >
+      <Text color="gray.100" fontFamily="heading" fontSize="sm">
         {getName(data.firstTeamCountryCode)} vs.{' '}
         {getName(data.secondTeamCountryCode)}
       </Text>
@@ -100,12 +90,7 @@ export function Game({
           onPress={onGuessConfirm}
         >
           <HStack alignItems="center">
-            <Text
-              color="white"
-              fontSize="xs"
-              fontFamily="heading"
-              mr={3}
-            >
+            <Text color="white" fontSize="xs" fontFamily="heading" mr={3}>
               CONFIRMAR PALPITE
             </Text>
 

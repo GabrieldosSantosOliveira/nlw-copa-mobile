@@ -7,7 +7,7 @@ interface Props {
 export function EmptyMyPoolList({ code }: Props) {
   function handleCodeShare() {
     Share.share({
-      message: code
+      message: code,
     });
   }
   return (

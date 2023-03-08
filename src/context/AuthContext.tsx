@@ -1,12 +1,9 @@
 import * as AuthSession from 'expo-auth-session';
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
-import React, {
-  createContext,
-  useState,
-  useEffect
-} from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
+WebBrowser.maybeCompleteAuthSession();
 import { api } from '../services/api';
 interface UserProps {
   name: string;
@@ -20,29 +17,22 @@ export interface AuthContextDataProps {
 interface AuthProviderProps {
   children: React.ReactNode;
 }
-export const AuthContext = createContext(
-  {} as AuthContextDataProps
-);
-export const AuthContextProvider = ({
-  children
-}: AuthProviderProps) => {
+export const AuthContext = createContext({} as AuthContextDataProps);
+export const AuthContextProvider = ({ children }: AuthProviderProps) => {
   const [isUserLoading, setIsUserLoading] = useState(false);
-  const [user, setUser] = useState<UserProps>(
-    {} as UserProps
-  );
-  const [request, response, promptAsync] =
-    Google.useAuthRequest({
-      clientId: process.env.CLIENT_ID,
-      redirectUri: AuthSession.makeRedirectUri({
-        useProxy: true
-      }),
-      scopes: ['profile', 'email']
-    });
+  const [user, setUser] = useState<UserProps>({} as UserProps);
+  const [, response, promptAsync] = Google.useAuthRequest({
+    clientId: process.env.CLIENT_ID,
+    redirectUri: AuthSession.makeRedirectUri({
+      useProxy: true,
+    }),
+    scopes: ['profile', 'email'],
+  });
   const singInWithGoogle = async (access_token: string) => {
     try {
       setIsUserLoading(true);
       const tokenResponse = await api.post('/users', {
-        access_token
+        access_token,
       });
       api.defaults.headers.common[
         'Authorization'
@@ -68,10 +58,7 @@ export const AuthContextProvider = ({
     }
   };
   useEffect(() => {
-    if (
-      response?.type === 'success' &&
-      response.authentication?.accessToken
-    ) {
+    if (response?.type === 'success' && response.authentication?.accessToken) {
       singInWithGoogle(response.authentication.accessToken);
     }
   }, [response]);
@@ -80,7 +67,7 @@ export const AuthContextProvider = ({
       value={{
         singIn,
         isUserLoading,
-        user
+        user,
       }}
     >
       {children}

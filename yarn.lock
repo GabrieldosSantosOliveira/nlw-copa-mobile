@@ -4490,10 +4490,10 @@ expo-asset@~8.6.1:
     path-browserify "^1.0.0"
     url-parse "^1.5.9"
 
-expo-auth-session@~3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/expo-auth-session/-/expo-auth-session-3.7.1.tgz#6c76d12220e2914998e030203afddc24b994a6a0"
-  integrity sha512-sUOdXBclpYSZEvOkaSbOpLhhtGUQ485ltPfq0sQi+24wh33rKLH2yBocL5QeU/yq/8bafHEWQvkKaUIA2Qq+dA==
+expo-auth-session@~3.7.4:
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/expo-auth-session/-/expo-auth-session-3.7.4.tgz#5161d22909852ef7c5f927cfd89cb9474db95b94"
+  integrity sha512-FsQ7smuLT+U2Y52Lt6U5m2N1kD+t3OmJG2ZOgCV7h3U8HrQ8omCA2Hn67kHzNaMNTHknsnFdJwEuvnvdysjWWQ==
   dependencies:
     expo-constants "~13.2.0"
     expo-crypto "~11.0.0"
@@ -7202,6 +7202,11 @@ prepend-http@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
   integrity sha512-ravE6m9Atw9Z/jjttRUZ+clIXogdghyZAuWJ3qEzjT+jI/dL1ifAqhZeC5VHzQp1MSt1+jxKkFNemj/iO7tVUA==
+
+prettier@^2.8.4:
+  version "2.8.4"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.4.tgz#34dd2595629bfbb79d344ac4a91ff948694463c3"
+  integrity sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==
 
 pretty-bytes@5.6.0:
   version "5.6.0"

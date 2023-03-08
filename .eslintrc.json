@@ -2,6 +2,11 @@
   "env": {
     "es2021": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -23,12 +28,15 @@
     "import-helpers/order-imports": [
       "warn",
       {
-        // example configuration
         "newlinesBetween": "always",
         "groups": [
           "module",
           "/^@shared/",
-          ["parent", "sibling", "index"]
+          [
+            "parent",
+            "sibling",
+            "index"
+          ]
         ],
         "alphabetize": {
           "order": "asc",

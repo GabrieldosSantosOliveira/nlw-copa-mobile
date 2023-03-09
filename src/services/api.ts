@@ -1,4 +1,4 @@
 import axios from 'axios';
 export const api = axios.create({
-  baseURL: 'http://192.168.101.3:3333',
+  baseURL: process.env.API_URL,
 });

@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import React, { createContext, useState, useEffect } from 'react';
 
@@ -9,6 +10,7 @@ interface UserProps {
 export interface AuthContextDataProps {
   user: UserProps;
   isUserLoading: boolean;
+  isLoadingUserInStorage: boolean;
   singIn: () => Promise<void>;
 }
 interface AuthProviderProps {
@@ -18,7 +20,21 @@ export const AuthContext = createContext({} as AuthContextDataProps);
 export const AuthContextProvider = ({ children }: AuthProviderProps) => {
   const [isUserLoading, setIsUserLoading] = useState(false);
   const [user, setUser] = useState<UserProps>({} as UserProps);
-
+  const [isLoadingUserInStorage, setIsLoadingUserInStorage] = useState(true);
+  const loadingUserInStorage = async () => {
+    try {
+      const tokenInStorage = await AsyncStorage.getItem('token');
+      api.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+        tokenInStorage,
+      )}`;
+      const userInfoResponse = await api.get('/me');
+      setUser(userInfoResponse.data.user);
+    } catch (error) {
+      await AsyncStorage.removeItem('token');
+    } finally {
+      setIsLoadingUserInStorage(false);
+    }
+  };
   const singInWithGoogle = async (access_token: string) => {
     try {
       setIsUserLoading(true);
@@ -29,6 +45,10 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
         'Authorization'
       ] = `Bearer ${tokenResponse.data.token}`;
       const userInfoResponse = await api.get('/me');
+      await AsyncStorage.setItem(
+        'token',
+        JSON.stringify(tokenResponse.data.token),
+      );
       setUser(userInfoResponse.data.user);
     } catch (error) {
       console.log(error);
@@ -60,10 +80,12 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
       offlineAccess: true,
       webClientId: process.env.CLIENT_ID,
     });
+    loadingUserInStorage();
   }, []);
   return (
     <AuthContext.Provider
       value={{
+        isLoadingUserInStorage,
         singIn,
         isUserLoading,
         user,

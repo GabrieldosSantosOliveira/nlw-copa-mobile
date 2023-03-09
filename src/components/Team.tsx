@@ -7,9 +7,15 @@ interface Props {
   code: string;
   position: 'left' | 'right';
   onChangeText: (value: string) => void;
+  defaultValue: string;
 }
 
-export function Team({ code, position, onChangeText }: Props) {
+export function Team({
+  code,
+  position,
+  onChangeText,
+  defaultValue = '',
+}: Props) {
   return (
     <HStack alignItems="center">
       {position === 'left' && (
@@ -22,6 +28,7 @@ export function Team({ code, position, onChangeText }: Props) {
         textAlign="center"
         fontSize="xs"
         keyboardType="numeric"
+        defaultValue={defaultValue}
         onChangeText={onChangeText}
       />
 

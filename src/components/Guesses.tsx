@@ -88,6 +88,8 @@ export function Guesses({ poolId, code }: Props) {
           setFirstTeamPoints={setFirstTeamPoints}
           setSecondTeamPoints={setSecondTeamPoints}
           onGuessConfirm={() => handleGuessConfirm(item.id)}
+          defaultFirstTeamPoints={item?.guess?.firstTeamPoints?.toString()}
+          defaultSecondTeamPoints={item?.guess?.secondTeamPoints?.toString()}
         />
       )}
       ListEmptyComponent={<EmptyMyPoolList code={code} />}

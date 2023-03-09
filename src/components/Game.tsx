@@ -28,6 +28,8 @@ interface Props {
   onGuessConfirm: () => void;
   setFirstTeamPoints: (value: string) => void;
   setSecondTeamPoints: (value: string) => void;
+  defaultFirstTeamPoints?: string;
+  defaultSecondTeamPoints?: string;
 }
 
 export function Game({
@@ -35,6 +37,8 @@ export function Game({
   setFirstTeamPoints,
   setSecondTeamPoints,
   onGuessConfirm,
+  defaultFirstTeamPoints = '',
+  defaultSecondTeamPoints = '',
 }: Props) {
   const { colors, sizes } = useTheme();
   const when = dayjs(data.date)
@@ -70,6 +74,7 @@ export function Game({
           code={data.firstTeamCountryCode}
           position="right"
           onChangeText={setFirstTeamPoints}
+          defaultValue={defaultFirstTeamPoints}
         />
 
         <Feather name="x" color={colors.gray[300]} size={sizes[6]} />
@@ -78,6 +83,7 @@ export function Game({
           code={data.secondTeamCountryCode}
           position="left"
           onChangeText={setSecondTeamPoints}
+          defaultValue={defaultSecondTeamPoints}
         />
       </HStack>
 

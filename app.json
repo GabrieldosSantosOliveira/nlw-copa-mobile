@@ -20,7 +20,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gabriel85.nlwcopamobile"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,6 +30,9 @@
       },
       "package": "com.gabriel85.nlwcopamobile"
     },
+    "plugins": [
+      "@react-native-google-signin/google-signin"
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
     },

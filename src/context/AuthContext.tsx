@@ -1,9 +1,6 @@
-import * as AuthSession from 'expo-auth-session';
-import * as Google from 'expo-auth-session/providers/google';
-import * as WebBrowser from 'expo-web-browser';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import React, { createContext, useState, useEffect } from 'react';
 
-WebBrowser.maybeCompleteAuthSession();
 import { api } from '../services/api';
 interface UserProps {
   name: string;
@@ -21,14 +18,7 @@ export const AuthContext = createContext({} as AuthContextDataProps);
 export const AuthContextProvider = ({ children }: AuthProviderProps) => {
   const [isUserLoading, setIsUserLoading] = useState(false);
   const [user, setUser] = useState<UserProps>({} as UserProps);
-  const [, response, promptAsync] = Google.useAuthRequest({
-    clientId: process.env.CLIENT_ID,
-    redirectUri: AuthSession.makeRedirectUri({
-      useProxy: true,
-      scheme: 'nlwcopamobile',
-    }),
-    scopes: ['profile', 'email'],
-  });
+
   const singInWithGoogle = async (access_token: string) => {
     try {
       setIsUserLoading(true);
@@ -50,7 +40,12 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
   const singIn = async () => {
     try {
       setIsUserLoading(true);
-      await promptAsync();
+      await GoogleSignin.hasPlayServices({
+        showPlayServicesUpdateDialog: true,
+      });
+      await GoogleSignin.signIn();
+      const { accessToken } = await GoogleSignin.getTokens();
+      singInWithGoogle(accessToken);
     } catch (error) {
       console.log(error);
       throw error;
@@ -58,11 +53,14 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
       setIsUserLoading(false);
     }
   };
+
   useEffect(() => {
-    if (response?.type === 'success' && response.authentication?.accessToken) {
-      singInWithGoogle(response.authentication.accessToken);
-    }
-  }, [response]);
+    GoogleSignin.configure({
+      iosClientId: process.env.CLIENT_ID_IOS,
+      offlineAccess: true,
+      webClientId: process.env.CLIENT_ID,
+    });
+  }, []);
   return (
     <AuthContext.Provider
       value={{
